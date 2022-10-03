@@ -1,8 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import './assets/styles/index.sass'
-import './assets/fonts/Gilroy/Gilroy.css'
-import './assets/fonts/Nekst-Black/Neckt-Black.css'
+import './assets/styles/index.scss'
 
 createApp(App).mount('#app')

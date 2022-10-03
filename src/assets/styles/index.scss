@@ -1,0 +1,59 @@
+@use "./abstracts/breakpoints" as *;
+@use "./abstracts/variables" as *;
+@import '../fonts/Gilroy/Gilroy.css';
+@import '../fonts/Nekst-Black/Neckt-Black.css';
+
+:root {
+  --gray-color: #575757;
+  --orange-bg-color: #FF9514;
+  --black-color: #111111;
+  --light-gray-bg-color: #F3F3F4;
+  --white-color: #FFFFFF;
+  --btn-disabled-bg-color: #FF951466;
+  --slider-bg-bar-color: #E1E1E1;
+}
+
+* {
+
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 1440px;
+  margin: auto;
+  padding: 21.3rem 4.8rem 0;
+
+  @include media(">=large", "<huge") {
+    max-width: 1024px;
+    padding: 10rem 4.8rem 0;
+  }
+
+  @include media(">=medium", "<large") {
+    max-width: 768px;
+    padding: 6.4rem 3.6rem 0;
+  }
+
+  @include media(">=small", "<medium") {
+    max-width: 100%;
+    padding: 4.4rem 2rem 0;
+  }
+
+  @include media("<small") {
+    max-width: 100%;
+    padding: 4.4rem 2rem 0;
+  }
+}

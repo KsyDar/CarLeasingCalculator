@@ -1,14 +1,33 @@
 @use "../../../assets/styles/abstracts/variables" as *;
+@use "../../../assets/styles/abstracts/breakpoints" as *;
 
 .header {
   width: 60%;
-  font-family: 'Nekst-Black', sans-serif;
+  font-family: 'Nekst', sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 5.4rem;
   line-height: 90%;
   color: $black-color;
   margin-bottom: 3.2rem;
+
+  @include media(">=large", "<huge") {
+    width: 70%;
+  }
+
+  @include media(">=medium", "<large") {
+    width: 90%;
+  }
+
+  @include media(">=small", "<medium") {
+    width: 97%;
+    font-size: 3.4rem;
+  }
+
+  @include media("<small") {
+    width: 97%;
+    font-size: 3.4rem;
+  }
 }
 
 .form {
@@ -19,22 +38,59 @@
   row-gap: 6.1rem;
   align-items: start;
 
+  @include media(">=large", "<huge") {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 4rem ;
+  }
+
+  @include media(">=medium", "<large") {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2.2rem ;
+  }
+
+  @include media(">=small", "<medium") {
+    grid-template-columns: 1fr;
+    row-gap: 1.6rem ;
+  }
+
+  @include media("<small") {
+    grid-template-columns: 1fr;
+    row-gap: 1.6rem ;
+  }
+
 
   &__text {
     display: flex;
     flex-direction: column;
-    font-family: 'Nekst-Black', sans-serif;
+    font-family: 'Nekst', sans-serif;
     font-style: normal;
     font-weight: 900;
     font-size: 5.4rem;
     color: $gray-color;
 
-    &>span {
+    @include media(">=small", "<medium") {
+      font-size: 2.2rem;
+    }
+  
+    @include media("<small") {
+      font-size: 2.2rem;
+    }
+
+
+    & > span {
       font-family: 'Gilroy', sans-serif;
       font-style: normal;
       font-weight: 400;
       font-size: 1.6rem;
       margin-bottom: .8rem;
+
+      @include media(">=small", "<medium") {
+        font-size: 1.4rem;
+      }
+    
+      @include media("<small") {
+        font-size: 1.4rem;
+      }
     }
   }
 
@@ -46,15 +102,23 @@
 
   &__input-portion {
     width: 100%;
-    font-family: 'Nekst-Black', sans-serif;
+    font-family: 'Nekst', sans-serif;
     font-style: normal;
     font-weight: 900;
     font-size: 3rem;
     color: $gray-color;
+
+    @include media(">=small", "<medium") {
+      font-size: 2.2rem;
+    }
+
+    @include media("<small") {
+      font-size: 2.2rem;
+    }
   }
 
   &__input-mark {
-    font-family: 'Nekst-Black', sans-serif;
+    font-family: 'Nekst', sans-serif;
     font-style: normal;
     font-weight: 900;
     font-size: 3rem;
@@ -71,5 +135,15 @@
     font-size: 2rem;
     background: #EBEBEC;
     border-radius: 1.6rem;
+
+    @include media(">=small", "<medium") {
+      font-size: 2.2rem;
+      top: 100%;
+    }
+
+    @include media("<small") {
+      font-size: 2.2rem;
+      top: 100%;
+    }
   }
 }

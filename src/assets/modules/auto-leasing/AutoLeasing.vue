@@ -8,6 +8,7 @@
         v-model="autoPrice"
         :min="1000000"
         :max="6000000"
+        :disabled="disabled"
       >
       </Slider>
 
@@ -17,15 +18,14 @@
         v-model="downPaymentPercent"
         :min="10"
         :max="60"
+        :disabled="disabled"
       >
         <template #input="{ spacedValue, value }">
           <div class="form__input-portion-wrapper">
             <div class="form__input-portion">
               {{ spacedValue(downPayment) }} ₽
             </div>
-            <div class="form__input-mark">
-              {{ value }}%
-            </div>
+            <div class="form__input-mark">{{ value }}%</div>
           </div>
         </template>
       </Slider>
@@ -36,6 +36,7 @@
         v-model="leaseTerm"
         :min="1"
         :max="60"
+        :disabled="disabled"
       >
       </Slider>
       <div class="form__text">
@@ -46,7 +47,6 @@
         <span> Ежемесячный платеж от </span>
         {{ monthPay.toLocaleString() }} ₽
       </div>
-      <!-- <button class="submit-button">Оставить заявку</button> -->
       <UIButton @click="send" class="form__button" :loading="loading">
         Оставить заявку
       </UIButton>
@@ -56,6 +56,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import axios from 'axios'
 import Slider from "../../../components/Slider/Slider.vue";
 import UIButton from "../../../components/Button/UIButton.vue";
 
@@ -63,8 +64,9 @@ const interestRate = 0.035;
 
 const autoPrice = ref(3300000);
 const leaseTerm = ref(60);
-const loading = ref(false);
 const downPaymentPercent = ref(13);
+const loading = ref(false);
+const disabled = ref(false);
 
 const downPayment = computed(() => {
   return Math.round((downPaymentPercent.value / 100) * autoPrice.value);
@@ -82,9 +84,34 @@ const total = computed(() => {
   return Math.round(downPayment.value + leaseTerm.value * monthPay.value);
 });
 
+const postReguest = async (info) => {
+  try {
+    await axios.post("https://eoj3r7f3r4ef6v4.m.pipedream.net", info)
+  } catch (err) {
+    return false;
+  }
+};
+
 const send = () => {
-  loading.value = true
-}
+  loading.value = true;
+  disabled.value = true;
+
+  const application = {
+    autoPrice: autoPrice.value,
+    downPaymentPercent: downPaymentPercent.value,
+    leaseTerm: leaseTerm.value,
+    monthPay: monthPay.value,
+    total: total.value,
+  };
+
+  postReguest(application);
+
+  setTimeout(() => {
+    loading.value = false;
+    disabled.value = false;
+    console.log("send query");
+  }, 5000);
+};
 </script>
 
 <style scoped lang="scss">
