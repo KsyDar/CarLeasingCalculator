@@ -118,40 +118,156 @@ const send = () => {
 </script>
 
 <style scoped lang="scss">
-@use "AutoLeasing";
+@use "../../assets/styles/abstracts/variables" as *;
+@use "../../assets/styles/abstracts/breakpoints" as *;
 
 .content {
   width: 100%;
 }
 
-.submit-button {
-  padding: 8px 16px 12px;
-  width: 426px;
-  height: 68px;
-  background: #ff9514;
-  border-radius: 40px;
-  font-family: "Nekst";
+.header {
+  width: 100%;
+  font-family: "Nekst", sans-serif;
   font-style: normal;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 36px;
-  color: #fff;
-  border: none;
+  font-weight: 900;
+  font-size: 5.4rem;
+  line-height: 90%;
+  color: $black-color;
+  margin-bottom: 3.2rem;
 
-  &:hover {
-    background: #111111;
-    transition: background 0.5s;
-    cursor: pointer;
+  @include media(">=huge") {
+    width: 60%;
   }
 
-  &:active {
-    background: #575757;
-    transition: background 0.5s;
+  @include media(">=small", "<medium") {
+    font-size: 3.4rem;
   }
 
-  &:disabled {
-    background: #ff951466;
-    transition: background 0.5s;
+  @include media("<small") {
+    font-size: 3.4rem;
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 4.1rem;
+  row-gap: 6.1rem;
+  align-items: start;
+
+  @include media(">=large", "<huge") {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 4rem;
+  }
+
+  @include media(">=medium", "<large") {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2.2rem;
+  }
+
+  @include media(">=small", "<medium") {
+    grid-template-columns: 1fr;
+    row-gap: 1.6rem;
+  }
+
+  @include media("<small") {
+    grid-template-columns: 1fr;
+    row-gap: 1.6rem;
+  }
+
+  &__slider {
+    @include media(">=medium", "<huge") {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    font-family: "Nekst", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 5.4rem;
+    color: $gray-color;
+
+    @include media(">=small", "<medium") {
+      font-size: 2.2rem;
+    }
+
+    @include media("<small") {
+      font-size: 2.2rem;
+    }
+
+    & > span {
+      font-family: "Gilroy", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+
+      @include media(">=small", "<medium") {
+        font-size: 1.4rem;
+      }
+
+      @include media("<small") {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  &__input-portion-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__input-portion {
+    width: 100%;
+    font-family: "Nekst", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 3rem;
+    color: $gray-color;
+
+    @include media(">=small", "<medium") {
+      font-size: 2.2rem;
+    }
+
+    @include media("<small") {
+      font-size: 2.2rem;
+    }
+  }
+
+  &__input-mark {
+    font-family: "Nekst", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 3rem;
+    color: $gray-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4.8rem;
+    width: 6.7rem;
+    position: absolute;
+    left: calc(100% - 7.1rem);
+    top: calc(100% - 0.5rem);
+    translate: 0 -100%;
+    font-size: 2rem;
+    background: #ebebec;
+    border-radius: 1.6rem;
+
+    @include media(">=small", "<medium") {
+      font-size: 2.2rem;
+      top: 100%;
+    }
+
+    @include media("<small") {
+      font-size: 2.2rem;
+      top: 100%;
+    }
   }
 }
 </style>
