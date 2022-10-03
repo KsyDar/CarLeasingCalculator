@@ -1,8 +1,8 @@
-@use "../../../assets/styles/abstracts/variables" as *;
-@use "../../../assets/styles/abstracts/breakpoints" as *;
+@use "../../assets/styles/abstracts/variables" as *;
+@use "../../assets/styles/abstracts/breakpoints" as *;
 
 .header {
-  width: 60%;
+  width: 100%;
   font-family: 'Nekst', sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -11,21 +11,15 @@
   color: $black-color;
   margin-bottom: 3.2rem;
 
-  @include media(">=large", "<huge") {
-    width: 70%;
-  }
-
-  @include media(">=medium", "<large") {
-    width: 90%;
+  @include media(">=huge") {
+    width: 60%;
   }
 
   @include media(">=small", "<medium") {
-    width: 97%;
     font-size: 3.4rem;
   }
 
   @include media("<small") {
-    width: 97%;
     font-size: 3.4rem;
   }
 }
@@ -56,6 +50,13 @@
   @include media("<small") {
     grid-template-columns: 1fr;
     row-gap: 1.6rem ;
+  }
+
+  &__slider {
+    @include media(">=medium", "<huge") {
+      grid-column-start: 1;
+      grid-column-end: 3;
+  }
   }
 
 
@@ -130,7 +131,7 @@
     width: 6.7rem;
     position: absolute;
     left: calc(100% - 7.1rem);
-    top: calc(100% - 1rem);
+    top: calc(100% - .5rem);
     translate: 0 -100%;
     font-size: 2rem;
     background: #EBEBEC;

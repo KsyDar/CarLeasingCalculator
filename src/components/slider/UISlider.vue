@@ -1,5 +1,5 @@
 <template>
-  <div class="slider" :class="{ sliderDisabled: disabled }">
+  <div class="slider" :class="{ 'slider-disabled': disabled }">
     <div class="slider__label">
       {{ label }}
     </div>
@@ -7,15 +7,15 @@
       <slot
         name="input"
         :value="modelValue"
-        :customized-value="customizedValue"
-        :spacedValue="spacedValue"
+        :converted-value="convertedValue"
+        :unSpaceValue="unSpaceValue"
       >
         <input
           type="text"
-          v-model="customizedValue"
+          v-model="convertedValue"
           @change="inputChange($event.target.value)"
-          @focus="customizedValue = customValue(customizedValue)"
-          @blur="customizedValue = spacedValue(customizedValue)"
+          @focus="convertedValue = convertValue(convertedValue)"
+          @blur="convertedValue = unSpaceValue(convertedValue)"
           class="slider__input-text"
           :disabled="disabled"
         />
@@ -31,7 +31,7 @@
         :max="max"
         v-model="modelValue"
         class="slider__input-range"
-        :style="{ backgroundSize: ProgressLineSize + '%' }"
+        :style="{ backgroundSize: progressLineSize + '%' }"
         @input="sliderChange($event.target.value)"
         :disabled="disabled"
       />
@@ -75,7 +75,7 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const customValue = (modelValue) => {
+const convertValue = (modelValue) => {
   if (modelValue === "") {
     return "";
   }
@@ -83,7 +83,7 @@ const customValue = (modelValue) => {
   return parseInt(withoutSpaceValue);
 };
 
-const spacedValue = (modelValue) => {
+const unSpaceValue = (modelValue) => {
   if (modelValue === "") {
     return "";
   }
@@ -91,7 +91,7 @@ const spacedValue = (modelValue) => {
   return spacedValue;
 };
 
-const customizedValue = ref(props.modelValue.toLocaleString());
+const convertedValue = ref(props.modelValue.toLocaleString());
 
 const calcProgressLineSize = () => {
   const progressLineSize =
@@ -99,7 +99,7 @@ const calcProgressLineSize = () => {
   return progressLineSize;
 };
 
-const ProgressLineSize = computed(() => calcProgressLineSize());
+const progressLineSize = computed(() => calcProgressLineSize());
 
 const inputChange = (inputValue) => {
   let eventValue = parseInt(inputValue);
@@ -116,17 +116,18 @@ const inputChange = (inputValue) => {
   }
 
   emit("update:modelValue", value);
-  customizedValue.value = parseInt(value);
+  convertedValue.value = value;
   calcProgressLineSize();
 };
 
 const sliderChange = (value) => {
-  emit("update:modelValue", parseInt(value));
-  customizedValue.value = spacedValue(parseInt(value));
+  const valueInt = parseInt(value);
+  emit("update:modelValue", valueInt);
+  convertedValue.value = unSpaceValue(valueInt);
   calcProgressLineSize();
 };
 </script>
 
 <style scoped lang="scss">
-@use './Slider.scss';
+@use './UISlider.scss';
 </style>

@@ -2,7 +2,8 @@
   <div class="content">
     <h1 class="header">Рассчитайте стоимость автомобиля в лизинг</h1>
     <form class="form" @submit="$event.preventDefault()">
-      <Slider
+      <UISlider
+        class="form__slider"
         label="Стоимость автомобиля"
         afterInput="₽"
         v-model="autoPrice"
@@ -10,9 +11,10 @@
         :max="6000000"
         :disabled="disabled"
       >
-      </Slider>
+      </UISlider>
 
-      <Slider
+      <UISlider
+        class="form__slider"
         label="Первоначальный взнос"
         afterInput="%"
         v-model="downPaymentPercent"
@@ -20,17 +22,18 @@
         :max="60"
         :disabled="disabled"
       >
-        <template #input="{ spacedValue, value }">
+        <template #input="{ unSpaceValue, value }">
           <div class="form__input-portion-wrapper">
             <div class="form__input-portion">
-              {{ spacedValue(downPayment) }} ₽
+              {{ unSpaceValue(downPayment) }} ₽
             </div>
             <div class="form__input-mark">{{ value }}%</div>
           </div>
         </template>
-      </Slider>
+      </UISlider>
 
-      <Slider
+      <UISlider
+        class="form__slider"
         label="Срок лизинга"
         afterInput="мес."
         v-model="leaseTerm"
@@ -38,7 +41,7 @@
         :max="60"
         :disabled="disabled"
       >
-      </Slider>
+      </UISlider>
       <div class="form__text">
         <span> Сумма договора лизинга </span>
         {{ total.toLocaleString() }} ₽
@@ -56,9 +59,9 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import axios from 'axios'
-import Slider from "../../../components/Slider/Slider.vue";
-import UIButton from "../../../components/Button/UIButton.vue";
+import axios from "axios";
+import UISlider from "../../components/slider/UISlider.vue";
+import UIButton from "../../components/button/UIButton.vue";
 
 const interestRate = 0.035;
 
@@ -84,9 +87,9 @@ const total = computed(() => {
   return Math.round(downPayment.value + leaseTerm.value * monthPay.value);
 });
 
-const postReguest = async (info) => {
+const postRequest = async (info) => {
   try {
-    await axios.post("https://eoj3r7f3r4ef6v4.m.pipedream.net", info)
+    await axios.post("https://eoj3r7f3r4ef6v4.m.pipedream.net", info);
   } catch (err) {
     return false;
   }
@@ -104,7 +107,7 @@ const send = () => {
     total: total.value,
   };
 
-  postReguest(application);
+  postRequest(application);
 
   setTimeout(() => {
     loading.value = false;

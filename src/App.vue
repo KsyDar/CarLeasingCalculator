@@ -7,7 +7,7 @@
 
 
 <script setup>
-import AutoLeasing from "./assets/modules/auto-leasing/AutoLeasing.vue";
+import AutoLeasing from "./modules/AutoLeasing/AutoLeasing.vue";
 </script>
 
 
