@@ -1,11 +1,13 @@
 <template>
-  <CarLeasingCalculator />
+  <div class="container">
+    <AutoLeasing/>
+  </div>
 </template>
 
 
 
 <script setup>
-import CarLeasingCalculator from "./components/CarLeasingCalculator.vue";
+import AutoLeasing from "./assets/modules/auto-leasing/AutoLeasing.vue";
 </script>
 
 

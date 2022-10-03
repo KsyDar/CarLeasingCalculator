@@ -1,0 +1,75 @@
+@use "../../../assets/styles/abstracts/variables" as *;
+
+.header {
+  width: 60%;
+  font-family: 'Nekst-Black', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 5.4rem;
+  line-height: 90%;
+  color: $black-color;
+  margin-bottom: 3.2rem;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 4.1rem;
+  row-gap: 6.1rem;
+  align-items: start;
+
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Nekst-Black', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 5.4rem;
+    color: $gray-color;
+
+    &>span {
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1.6rem;
+      margin-bottom: .8rem;
+    }
+  }
+
+  &__input-portion-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__input-portion {
+    width: 100%;
+    font-family: 'Nekst-Black', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 3rem;
+    color: $gray-color;
+  }
+
+  &__input-mark {
+    font-family: 'Nekst-Black', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 3rem;
+    color: $gray-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4.8rem;
+    width: 6.7rem;
+    position: absolute;
+    left: calc(100% - 7.1rem);
+    top: calc(100% - 1rem);
+    translate: 0 -100%;
+    font-size: 2rem;
+    background: #EBEBEC;
+    border-radius: 1.6rem;
+  }
+}

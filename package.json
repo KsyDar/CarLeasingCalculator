@@ -9,8 +9,10 @@
   "dependencies": {
     "vue": "^3.2.38"
   },
+  "browserslist": ["cover 99.9%"],
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.3",
+    "autoprefixer": "^10.4.12",
     "sass": "^1.55.0",
     "sass-loader": "^13.0.2",
     "scss": "^0.2.4",
