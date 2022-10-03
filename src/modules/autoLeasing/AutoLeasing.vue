@@ -118,8 +118,7 @@ const send = () => {
 </script>
 
 <style scoped lang="scss">
-@use "../../assets/styles/abstracts/variables" as *;
-@use "../../assets/styles/abstracts/breakpoints" as *;
+@use "../../assets/styles/abstracts" as *;
 
 .content {
   width: 100%;

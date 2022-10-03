@@ -26,8 +26,7 @@ defineProps({
 </script>
 
 <style lang="scss">
-@use "../../assets/styles/abstracts/variables" as *;
-@use "../../assets/styles/abstracts/breakpoints" as *;
+@use "../../assets/styles/abstracts" as *;
 
 .button {
   min-width: 10.5rem;
