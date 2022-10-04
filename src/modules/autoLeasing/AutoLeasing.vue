@@ -89,7 +89,7 @@ const total = computed(() => {
 
 const postRequest = async (info) => {
   try {
-    await axios.post("https://eoj3r7f3r4ef6v4.m.pipedream.net", info);
+    await axios.post("https://eoj3r7f3r4ef6v4.m.pipedream.net/application", info);
   } catch (err) {
     return false;
   }
