@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import UILoader from "../Loader/UILoader.vue";
+import UILoader from "../loader/UILoader.vue";
 defineProps({
   disabled: {
     type: Boolean,
